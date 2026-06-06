@@ -36,21 +36,7 @@ except Exception as e:
     st.sidebar.error("❌ Error al inicializar el modelo")
     st.sidebar.write(f"Detalle técnico: {e}")
 
-# 3. PANELES DE VISUALIZACIÓN DE GRÁFICOS ESTÁTICOS
-st.header("1. Cuadro de Mando del Modelo (Métricas Fijas)")
-col1, col2 = st.columns(2)
 
-with col1:
-    st.subheader("Comparativa de Rendimiento Global")
-    # Muestra la imagen guardada sin modificarla ni recalcularla
-    st.image("comparativa_modelos_real.png", caption="Figura: Evaluación Multimodelo de Acierto Comercial.", use_container_width=True)
-
-with col2:
-    st.subheader("Importancia de Variables (Estructura Operativa)")
-    # Muestra la imagen fija de la contribución de tus 6 variables
-    st.image("importancia_variables_operativas.png", caption="Figura: Grado de contribución relativa re-escalado.", use_container_width=True)
-
-st.markdown("---")
 
 # 4. CARGA DEL NUEVO DATASET PARA PRUEBAS OPERATIVAS
 st.header("2. Carga del Dataset de Evaluación")
