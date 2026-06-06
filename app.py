@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import os
+import gdown
+import warnings
 
 # 1. CONFIGURACIÓN DE LA INTERFAZ WEB
 st.set_page_config(page_title="Predicción de Demanda - Farmacias", layout="wide")
@@ -9,25 +12,26 @@ st.set_page_config(page_title="Predicción de Demanda - Farmacias", layout="wide
 st.title("📊 Sistema Inteligente de Predicción de Ventas Diarias")
 st.markdown("---")
 
-# 2. CARGA DEL MODELO PRE-ENTRENADO
-import os
-import gdown
 
+
+# 2. CARGA DEL MODELO DESDE GOOGLE DRIVE CON TOLERANCIA DE VERSIONES
 @st.cache_resource
 def cargar_modelo():
     archivo_destino = "modelo_random_forest.pkl"
     
-    # Si el archivo no existe en el servidor de Streamlit, lo descarga una sola vez
     if not os.path.exists(archivo_destino):
-        with st.spinner("Descargando el modelo predictivo desde el almacenamiento central (esto toma un momento)..."):
-            # REEMPLAZA las XXXXXX de abajo con el ID real de tu archivo de Google Drive
-            id_drive = "1-NGYPv50MFzd00ry3OcIp3XP9ujebQN9" 
+        with st.spinner("Descargando el modelo predictivo desde el almacenamiento central..."):
+            # Asegúrate de mantener aquí tu ID real de Google Drive
+            id_drive = "1A2B3C4D5E6F7G8H9I0J" 
             url_descarga = f"https://drive.google.com/uc?id={id_drive}"
-            
-            # Descargar de forma silenciosa el archivo de 1.5 GB
             gdown.download(url_descarga, archivo_destino, quiet=False)
             
-    return joblib.load(archivo_destino)
+    # Forzar al sistema a omitir advertencias estructurales de empaquetado
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        modelo_cargado = joblib.load(archivo_destino)
+        
+    return modelo_cargado
 
 try:
     modelo = cargar_modelo()
