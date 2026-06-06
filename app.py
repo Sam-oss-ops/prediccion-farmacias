@@ -22,7 +22,7 @@ def cargar_modelo():
     if not os.path.exists(archivo_destino):
         with st.spinner("Descargando el modelo predictivo desde el almacenamiento central..."):
             # Asegúrate de mantener aquí tu ID real de Google Drive
-            id_drive = "1A2B3C4D5E6F7G8H9I0J" 
+            id_drive = "1-NGYPv50MFzd00ry3OcIp3XP9ujebQN9" 
             url_descarga = f"https://drive.google.com/uc?id={id_drive}"
             gdown.download(url_descarga, archivo_destino, quiet=False)
             
