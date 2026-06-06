@@ -5,7 +5,7 @@ import joblib
 import os
 import gdown
 import warnings
-
+import traceback
 # 1. CONFIGURACIÓN DE LA INTERFAZ WEB
 st.set_page_config(page_title="Predicción de Demanda - Farmacias", layout="wide")
 
@@ -37,7 +37,6 @@ try:
     modelo = cargar_modelo()
     st.sidebar.success("✅ Modelo Random Forest operativo")
 
-import traceback
 
 except Exception as e:
     st.sidebar.error("❌ Error al inicializar el modelo")
