@@ -17,12 +17,12 @@ st.markdown("---")
 # 2. CARGA DEL MODELO DESDE GOOGLE DRIVE CON TOLERANCIA DE VERSIONES
 @st.cache_resource
 def cargar_modelo():
-    archivo_destino = "modelo_random_forest.pkl"
+    archivo_destino = "modelo_random_forest_optimizado.pkl"
     
     if not os.path.exists(archivo_destino):
         with st.spinner("Descargando el modelo predictivo desde el almacenamiento central..."):
             # Asegúrate de mantener aquí tu ID real de Google Drive
-            id_drive = "1-NGYPv50MFzd00ry3OcIp3XP9ujebQN9" 
+            id_drive = "1obw5-5rw5zlhAa7WEzl7gE9cnoH9ifd2" 
             url_descarga = f"https://drive.google.com/uc?id={id_drive}"
             gdown.download(url_descarga, archivo_destino, quiet=False)
             
