@@ -36,10 +36,12 @@ def cargar_modelo():
 try:
     modelo = cargar_modelo()
     st.sidebar.success("✅ Modelo Random Forest operativo")
+
+import traceback
+
 except Exception as e:
     st.sidebar.error("❌ Error al inicializar el modelo")
-    st.sidebar.write(f"Detalle técnico: {e}")
-
+    st.text(traceback.format_exc())
 
 
 # 4. CARGA DEL NUEVO DATASET PARA PRUEBAS OPERATIVAS
